@@ -1,6 +1,8 @@
-import React from 'react'
+import React from 'react';
+// UI/functional/stateless component
 
-const ToDos = ({todos}) => {
+// Pass in the props from the root component
+const ToDos = ({todos, delToDo}) => {
     
     // if there are any items in todos list then show it
     // if true output the content
@@ -8,8 +10,9 @@ const ToDos = ({todos}) => {
         // mapping requires unique id for returned jsx
         todos.map(todo => {
             return(
-                <div className="collection-item" key={todo.id}>
-                    <span>{todo.content}</span>
+                <div className="collection-item" key={todo.ID}>
+                    {/* Clicking item will delete */}
+                    <span onClick={() => {delToDo(todo.ID)}}>{todo.content} </span>
                 </div>
             )
         })
@@ -17,6 +20,7 @@ const ToDos = ({todos}) => {
         <p className="center">You have no to dos</p>
     );
 
+    // return JSX template
     return(
         <div className="todos collection">
             {todoList}
